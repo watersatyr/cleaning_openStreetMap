@@ -1,7 +1,7 @@
 #!usr/bin/env python
 # -*- coding: utf-8 -*-
 # Title: p3_clean_value_class.py
-# author: sle7in
+# author: clasch
 # class: Udacity SQL Project 3
 # date: 1/25/2016
 
@@ -11,30 +11,13 @@ class CleanValue(object):
     """CleanValue returns a corrected value (determined by audit).
     It requires the value's key to determine cleaning route."""
 
-    def __init__(self):
-        """will later add class variables as instantiateable """
-        pass
-
-    expected_street_types = ["Street", "Avenue", "Boulevard", "Drive", "Court",
-        "Place", "Square", "Lane", "Road", "Trail", "Parkway", "Commons", "Way",
-        "Circle", "East", "West", "North", "South", "Southwest", "Alley", "Square"]
-
-    mapping = { "st" : "Street",
-                "St" : "Street",
-                "St." : "Street",
-                "Aventue" : "Avenue",
-                "Rd" : "Road",
-                "Dr" : "Drive",
-                "Ct" : "Court" }
-
-    foco_manual_updates = { "S Summit View #11" : "S Summit View Drive",
-                            "Old Town Square #238" : "Old Town Square",
-                            "S Timberline" : "S Timberline Road",
-                            "West Oak" : "West Oak Street",
-                            "Seventh-Day Adventist Church" : "E Pitkin Street" }
-
-    expected_postal_codes = ["80521", "80522", "80523", "80524", "80525", "80526",
-                             "80527", "80528", "80553", "80547", "80538", "80535" ]
+    def __init__(self, street_list, map_dict, manual_dict, post_list):
+        """will make them variables at a later date."""
+        self.expected_street_types = street_list
+        self.street_mapping = map_dict
+        self.foco_manual_updates = manual_dict
+        self.expected_postal_codes = post_list
+        self.street_type_re = re.compile(r"\b\S+\.?$", re.IGNORECASE)
 
 
     street_type_re = re.compile(r"\b\S+\.?$", re.IGNORECASE)
